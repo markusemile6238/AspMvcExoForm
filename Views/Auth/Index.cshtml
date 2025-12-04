@@ -1,1 +1,34 @@
-﻿
+﻿@{
+    ViewData["LoginCol"] = 7;
+    ViewData["FlexLoginPos"] = "justify-content-end";
+    ViewData["RegisterCol"] = 8;
+    ViewData["FlexRegisterPos"] = "justify-content-start";
+}
+<div class="container col-12 w-100 ">
+    <div class="d-flex col-12  d-flex text-light justify-content-around align-items-center   text-light">
+        <div class="col-5">
+             <partial  name="_Login.cshtml"></partial>
+        </div>
+        <div class="col-5">
+            <partial name="_Register.cshtml"></partial>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+
+            function toogleIcon(el){
+                const target = el.parentNode.firstChild.nextSibling;
+                const type = target.getAttribute('type') === 'password' ? 'text' : 'password';
+                target.setAttribute('type', type);
+
+                const nTarget = el.firstChild.nextSibling;
+                const currentIcon = nTarget.classList.contains("fa-eye") ? "fa-eye" : "fa-eye-slash";
+                const newIcon = nTarget.classList.contains("fa-eye") ? "fa-eye-slash" : "fa-eye";
+                nTarget.classList.remove(currentIcon);
+                nTarget.classList.add(newIcon);
+        }
+
+    </script>
+}

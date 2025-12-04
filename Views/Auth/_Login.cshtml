@@ -1,0 +1,78 @@
+﻿@model EXOformulaire.Models.Auth.LoginViewModel;
+@{
+    var colWidth = ViewData["LoginCol"] != null ? ViewData["LoginCol"] as int? : 3;   
+    var flexAlign = ViewData["FlexLoginPos"] != null ? ViewData["FlexLoginPos"] as string : "justify-content-center";
+
+}
+
+@using (Html.BeginForm("Login", "Auth", FormMethod.Post, new { id = "login-form", @class = "login-form" }))
+{
+    @Html.AntiForgeryToken()
+    ;
+
+    <div class="container w-100 h-100  d-flex  @flexAlign">
+        <div id="loginForm" class="col-@colWidth d-flex justify-content-center align-items-center">
+            <div class="d-flex row col-12 bg-dark rounded pb-4 px-2">
+                <h3 class="text-light text-center my-4">Sing in</h3>
+                <div class="col-lg-12 my-3">
+                    <fieldset>
+                        @Html.LabelFor(m => m.LoginEmail, new { @class = "form-label text-light w-100" })
+                        @Html.TextBoxFor(m=>m.LoginEmail,new{
+                        @class = "form-control",
+                                        placeholder = "Your Email...",
+                                        autocomplete = "on",
+                                        })
+                    @Html.ValidationMessageFor(m => m.LoginEmail)
+                </fieldset>
+            </div>
+
+
+            <div class="col-12  my-3">
+                <div class="input-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "form-label text-light w-100" })
+                    <div class="input-group">
+                        @Html.TextBoxFor(m => m.Password, new {
+                                                @class = "form-control",
+                                                type = "password",
+                                                autocomplete = "autocomplete",
+                                                id = "passwordLoginInput"
+                                                })
+                        <button class="btn btn-outline-secondary" type="button" id="toggleLoginPassword" onclick="toogleIcon(this)"
+                                style="height: 38px; border-color: #ced4da;">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger small" })
+                </div>
+            </div>
+
+
+
+            <div class="col-12 my-3 d-flex justify-content-evenly">
+                <button type="submit" class="btn btn-light btn-outline-primary">Register</button>
+                <button type="reset" class="btn btn-light btn-outline-danger">Reset</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        function toogleIcon(el){
+            const target = el.parentNode.firstChild.nextSibling;
+            const type = target.getAttribute('type') === 'password' ? 'text' : 'password';
+            target.setAttribute('type', type);
+
+            const nTarget = el.firstChild.nextSibling;
+            const currentIcon = nTarget.classList.contains("fa-eye") ? "fa-eye" : "fa-eye-slash";
+            const newIcon = nTarget.classList.contains("fa-eye") ? "fa-eye-slash" : "fa-eye";
+            nTarget.classList.remove(currentIcon);
+            nTarget.classList.add(newIcon);
+        }
+    </script>
+
+}
+
+
+}

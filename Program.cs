@@ -32,5 +32,10 @@ app.MapAreaControllerRoute(
     areaName: "Auth",
     pattern: "auth/{controller=Auth}/{action=Register}"
     );
+app.MapAreaControllerRoute(
+    name: "dashboard",
+    areaName: "Home",
+    pattern: "home/{controller=Home}/{action=Dashboard}"
+    );
 
 app.Run();

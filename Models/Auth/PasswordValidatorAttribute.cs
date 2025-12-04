@@ -20,33 +20,33 @@ namespace EXOformulaire.Models.Contact
 
             if (password.Length < 8)
             {
-                errors.Add("Le mot de passe doit contenir au moins 8 carcatères");
+                errors.Add("Le mot de passe doit contenir au moins 8 carcatères\n");
             }
 
             if (password.Length > 32)
             {
-                errors.Add("Le mot de passe doit contenir au maximum 32 carcatères");
+                errors.Add("Le mot de passe doit contenir au maximum 32 carcatères\n");
             }
 
             if (!password.Any(char.IsLower))
             {
-                errors.Add("Le mot de passe doit contenir au moins un caractere minuscule");
+                errors.Add("Le mot de passe doit contenir au moins un caractere minuscule\n");
             }
 
             if (!password.Any(char.IsUpper))
             {
-                errors.Add("Le mot de passe doit contenir au moins un caractere de type majuscule");
+                errors.Add("Le mot de passe doit contenir au moins un caractere de type majuscule\n");
             }
 
             if (!password.Any(char.IsDigit))
             {
-                errors.Add("Le mot de passe doit contenir au moins un chiffre");
+                errors.Add("Le mot de passe doit contenir au moins un chiffre\n");
             }
 
             var specialCharacters = "@$!%*?&";
             if (!password.Any(c => specialCharacters.Contains(c)))
             {
-                errors.Add("Le mot de passe doit contenir au moins un caracteres special parmis: @$!%*?& ");
+                errors.Add("Le mot de passe doit contenir au moins un caracteres special parmis: @$!%*?& \n");
             }
 
             if (!password.All(c => char.IsLetterOrDigit(c) || specialCharacters.Contains(c)))

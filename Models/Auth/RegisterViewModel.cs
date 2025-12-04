@@ -12,21 +12,21 @@ namespace EXOformulaire.Models.Auth
         [Required(ErrorMessage = "L'email est requis")]
         [EmailAddress(ErrorMessage = "Format d'email invalide")]
         [Display(Name = "Adresse email")]
-        public required string Email { get; set; }
+        public required string RegisterEmail { get; set; }
 
         [Required(ErrorMessage = "La date de naissance est requise")]
         [DataType(DataType.Date)]
         [Display(Name = "Anniversaire")]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime BirthDay { get; set; } = DateTime.Today;
 
-        [Display(Name = "Password")]
+        [Display(Name = "RegisterPassword")]
         [DataType(DataType.Password)]
         [PasswordValidator]
-        public required string Password { get; set; }
+        public required string RegisterPassword { get; set; }
 
         [Display(Name = "PasswordConfirmation")]
-        [Compare("Password", ErrorMessage = "Le mot de passe et sa confirmation ne sont pas identique !.")]
+        [Compare("RegisterPassword", ErrorMessage = "Le mot de passe et sa confirmation ne sont pas identique !.")]
         public required string PasswordConfirmation { get; set; }
 
 
